@@ -1,73 +1,90 @@
 var readlineSync = require("readline-sync");
 
-console.log("WELCOME!!!");
-console.log("Let's Play the Quiz on VIRAT KOHLI");
+function welcome() {
+  var userName = readlineSync.question("Please enter your name - ");
+
+  console.log("Welcome " + userName);
+  console.log("Let's Play the Quiz on VIRAT KOHLI");
+  console.log();
+  console.log("**You can either enter the option or type complete answer**");
+  console.log();
+}
 
 var score = 0;
 
 var questions = [
   {
-    question : "Date of Birth of Virat Kholi? ",
-    answer : "5 November"
-  },
-  
-  {
-    question : "Wife of Virat Kholi? ",
-    answer : "Anushka Sharma"
-  },
-  
-  {
-    question : "What is the present age of Virat Kohli? ",
-    answer : "33"
-  },
-  
-  {
-    question : "What is the Jersey number of Virat Kohli? ",
-    answer : "18"
+    question: "Date of Birth of Virat Kholi? ",
+    answerA: "5 November",
+    answerB: "18 August"
   },
 
   {
-    question : "Nick name of Virat Kohli? ",
-    answer : "Chiku"
+    question: "Wife of Virat Kholi? ",
+    answerA: "Anushka Sharma",
+    answerB: "Anushka Kohli"
   },
 
   {
-    question : "Birth Place of Virat Kohli? ",
-    answer : "Delhi"
+    question: "What is the present age of Virat Kohli? ",
+    answerA: "33",
+    answerB: "35"
   },
 
   {
-    question : "Second Favourite sport of Virat Kohli? ",
-    answer : "Football"
+    question: "What is the Jersey number of Virat Kohli? ",
+    answerA: "18",
+    answerB: "10"
+  },
+
+  {
+    question: "Nick name of Virat Kohli? ",
+    answerA: "Chiku",
+    answerB: "Kela"
+  },
+
+  {
+    question: "Birth Place of Virat Kohli? ",
+    answerA: "Delhi",
+    answerB: "Amritsar"
+  },
+
+  {
+    question: "Second Favourite sport of Virat Kohli? ",
+    answerA: "Football",
+    answerB: "Cricket"
   }
 ];
 
-function play(question, answer){
-  var userAnswer = readlineSync.question(question);
+function play(question, answerA, answerB) {
+  console.log(question);
+  console.log("A:" + answerA + "\t" + "B:" + answerB);
+  var userAnswer = readlineSync.question("Enter your answer: ");
 
-  if(userAnswer.toUpperCase() === answer.toUpperCase()){
+  if ((userAnswer.toUpperCase() === answerA.toUpperCase()) || (userAnswer.toUpperCase() === "A")) {
     console.log("Right ~'_'~");
     score++;
   }
-  else{
+  else {
     console.log("Wrong ^._.^");
   }
-  
-  console.log("Current Score: "+ score);
+
+  console.log("Current Score: " + score);
   console.log("-----------------------");
-  
+
 }
 
-function game(){
-  for(var i=0; i<questions.length; i++){
+function game() {
+  for (var i = 0; i < questions.length; i++) {
     var currentQuestion = questions[i];
-    play(currentQuestion.question, currentQuestion.answer)
+    play(currentQuestion.question, currentQuestion.answerA, currentQuestion.answerB);
   }
 }
 
-function showScores(){
-  console.log("Your Score : "+score);
+function showScores() {
+  console.log("Your Score : " + score);
 }
 
+welcome();
 game();
 showScores();
